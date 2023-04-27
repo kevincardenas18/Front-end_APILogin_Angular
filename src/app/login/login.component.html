@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h2 class="title">
+        <img [src]="logoUrl" alt="Logo de mi sitio web" class="logo"> 
+      </h2>
+      <form class="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input type="text" class="form-control" id="username" [(ngModel)]="username" name="usuario" (keydown)="onlyNumbers($event)">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="password" name="contrasena">
+        </div>
+        <div class="form-group">
+          <label for="username">Emisor</label>
+          <br>
+          <select class="form-select" [(ngModel)]="selectedEmisor" name="emisorSelect" (change)="onChangeEmisor($event)">
+            <option *ngFor="let emisor of emisores" [value]="emisor.NombreEmisor" [selected]="emisor.NombreEmisor === emisores[0].NombreEmisor">{{ emisor }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+      </form>
+    </div>
+  </div>
+</div>
