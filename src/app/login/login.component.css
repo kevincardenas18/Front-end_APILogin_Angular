@@ -23,8 +23,8 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px; 
-  color: #cccccc;
+  margin: 5px 8px 5px 8px; 
+  color: #5c5c5c;
 }
 
 
@@ -63,8 +63,7 @@ h2 {
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
-
-
+ 
 
 /* TABS */
 
@@ -289,49 +288,74 @@ input[type=password]:placeholder {
 
 #icon {
   width:60%;
+  margin: 40px 8px 20px 8px;
+  vertical-align: middle;  
 }
 
-
-/* OTHERS */
-.form-select {
-  /* Establecer el ancho del elemento */
-  width: 100%;
-  /* Establecer la altura del elemento */
-  height: 40px;
-  /* Establecer el tamaño de fuente */
+/* Seleccionamos el label por su atributo "for" */
+label[for="labelEmisor"] {
+  /* Estilos CSS */
+  text-align: center;
   font-size: 16px;
-  /* Establecer el color del texto */
-  color: #333;
-  /* Establecer el color de fondo */
-  background-color: #fff;
-  /* Establecer el borde */
-  border: 1px solid #ccc;
-  /* Establecer el radio del borde */
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 5px 8px 5px 8px; 
+  color: #5c5c5c;
+}
+  
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 10px;
   border-radius: 5px;
-  /* Establecer el relleno */
-  padding: 6px 12px;
-  /* Establecer la apariencia del cursor */
-  cursor: pointer;
-  /* Establecer la apariencia del selector */
-  appearance: none;
-}
-
-/* Establecer los estilos de los opciones */
-.form-select option {
-  /* Establecer el color de fondo */
-  background-color: #fff;
-  /* Establecer el color del texto */
-  color: #333;
-  /* Establecer el borde */
   border: none;
-  /* Establecer el relleno */
-  padding: 10px;
-  /* Establecer el borde inferior */
-  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Establecer los estilos del hover */
-.form-select option:hover {
-  /* Establecer el color de fondo */
-  background-color: #f2f2f2;
+/* Estilo del botón primario */
+.btn-primary {
+  background-color: #06b73e;
+  color: #fff;
 }
+
+/* Estilo del botón cuando el cursor está encima */
+.btn:hover {
+  background-color: #059934;
+  color: #fff;
+}
+
+/* Estilo de select */
+.form-select {
+  background-color: #f9f9f9;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #dcdcdc;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;  
+}
+
+/* Estilo de opciones */
+.form-select option {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+

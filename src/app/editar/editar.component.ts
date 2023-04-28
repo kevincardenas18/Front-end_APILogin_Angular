@@ -22,7 +22,6 @@ export class EditarComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.codigo = Number(params.get('id'));
-      // Aquí puedes hacer una llamada al API para obtener la información del centro de costo con este ID y llenar los campos correspondientes en el formulario.
     });
   }
 
@@ -44,23 +43,4 @@ export class EditarComponent {
     );
   }
   
-
-  // guardarCambios(): void {
-  //   const url = '/api/Api/centroCostos/update?codigoCentroCostos=${this.codigo}&descripcionCentroCostos=${this.nombreCentroCostos}';
-    
-  //   const body = { codigoCentroCostos: this.codigo, descripcionCentroCostos: this.nombreCentroCostos };
-  //   this.http.put(url).subscribe(
-  //     (response) => {
-  //       console.log(response);
-  //       Swal.fire('Se ha editado exitosamente');
-  //       this.router.navigate(['/home']);
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //       Swal.fire('¡Error!');
-  //       this.router.navigate(['/home']);
-  //     }
-  //   );
-  // }
-
 }

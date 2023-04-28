@@ -108,11 +108,7 @@ export class LoginComponent {
           Swal.fire('¡Error!');
         });
     }
-  
-    
     
   }
-  
-  
   
 }
