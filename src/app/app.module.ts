@@ -10,7 +10,10 @@ import { InsertarComponent } from './insertar/insertar.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { EditarComponent } from './editar/editar.component';
-
+import { MovimientoPlanillaComponent } from './movimiento-planilla/movimiento-planilla.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from './auth.guard';
+import { CentroCostosComponent } from './centro-costos/centro-costos.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +24,17 @@ import { EditarComponent } from './editar/editar.component';
     BusquedaComponent,
     FilterPipe,
     EditarComponent,
+    MovimientoPlanillaComponent,
+    CentroCostosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

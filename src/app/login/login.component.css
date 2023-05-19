@@ -336,7 +336,7 @@ label[for="labelEmisor"] {
   border: none;
   color: #0d0d0d;
   padding: 15px 32px;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -358,4 +358,7 @@ label[for="labelEmisor"] {
   padding: 0.5rem;
 }
 
+select.form-select option strong {
+  font-weight: bold;
+}
 

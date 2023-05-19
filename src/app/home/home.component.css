@@ -28,9 +28,30 @@
   color: #777;
 }
 
+/* Estilos para el navbar */
+.navbar {
+  background-color: #d2d2d2;
+  padding-left: 15rem;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #333;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: #007bff;
+}
+
+.navbar .navbar-nav .active .nav-link {
+  color: #007bff;
+}
+
+
 nav {
   background-color: #d2d2d2; /* Cambiar por el color que desees */
   width: 100%;
+  padding-right: 3rem;
 }
 
 nav ul {
@@ -173,3 +194,94 @@ button[type="submit"]:hover {
 
 
 
+.secondary-navigation {
+  display: flex;
+  justify-content: right; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-wrap: wrap;
+  gap: 5em;
+}
+
+
+.secondary-navigation a{
+  color: black;
+  font-size: 1.2em;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.column li {
+  margin-bottom: 10px;
+}
+
+
+.ms-auto.text-dark {
+  margin-right: 0; /* Elimina el margen derecho */
+}
+
+.navbar-text {
+  margin-right: 10px; /* Ajusta el margen derecho entre los elementos */
+}
+
+.navbar-text h6,
+.navbar-text p {
+  margin-bottom: 0; /* Elimina el espacio inferior entre los elementos */
+}
+
+.navbar-collapse .navbar-nav .nav-item {
+  /* Estilos personalizados para los elementos <li> */
+  margin-bottom: 10px;
+}
+
+.navbar-collapse .navbar-nav .nav-item h6 {
+  /* Estilos personalizados para los elementos <h6> dentro de los <li> */
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+}
+
+.navbar-nav li {
+  margin-left: 155px; /* Ajusta el valor según tus necesidades */
+}
+@media (max-width: 992px) {
+.navbar-nav li {
+  margin-left: 20px; /* Elimina el margen izquierdo */
+}
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background-color: #d2d2d2;
+  color: #fff;
+  padding: 20px;
+  margin-top: 0;
+}
+
+.content {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+
+.sidebar ul li a.nav-link {
+  color: black;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a.nav-link:hover {
+  color: blue;
+}
+
+.sidebar ul li a.nav-link.active {
+  color: red;
+}

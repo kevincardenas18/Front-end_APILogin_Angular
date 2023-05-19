@@ -20,5 +20,9 @@ export class EmisorService {
     }
     return this.emisorData;
   }
+
+  clearEmisorData() {
+    localStorage.removeItem('emisorData');
+  }
   
 }

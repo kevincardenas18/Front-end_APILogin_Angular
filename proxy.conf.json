@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://localhost:7019",
+    "target": "http://deployMetodologia.somee.com/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin":true

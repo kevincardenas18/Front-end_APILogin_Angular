@@ -26,8 +26,6 @@ export class LoginComponent {
   constructor(private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router) { 
     this.selectedEmisor= '';
     this.logoUrl = this.sanitizer.bypassSecurityTrustUrl('assets/img/logo-taller.svg');  
-    
-
   }
 
 
@@ -49,29 +47,30 @@ export class LoginComponent {
   ngOnInit() {
     this.http.get<any>('api/Api/emisores')
       .subscribe((data: any[]) => {
-        this.emisores = data.map(emisor => emisor.NombreEmisor);
+        this.emisores = data.map(emisor => {
+          return {
+            NombreEmisor: emisor.NombreEmisor,
+            Codigo: emisor.Codigo
+          };
+        });
         console.log(this.emisores); 
       });
-      
   }
   
 
   onChangeEmisor(event: Event) {
     const target = event.target as HTMLSelectElement;
     const selectedIndex = target.selectedIndex;
-    const emisorId = target.options[selectedIndex].value;
-    const emisorNombre = target.options[selectedIndex].textContent;
-    console.log('Emisor seleccionado:', emisorId);
+    const emisorNombre = target.options[selectedIndex].value;
     console.log('Nombre del emisor seleccionado:', emisorNombre);
     this.emisorComp = emisorNombre;
-    this.selectedEmisor = emisorId;
   }
-
+  
   onSubmit() {
 
 
     if (!this.username || !this.password || !this.emisorComp) {
-      Swal.fire('¡Error!');
+      Swal.fire('¡Usuario o Contraseña incorrecta!');
       return;
     }
     else{
@@ -92,13 +91,13 @@ export class LoginComponent {
         ruc: responseObj[0].RucUsuario,
       };
       if (this.emisorComp === emisorData.nombre) {
-        Swal.fire('Inicio exitoso!');
+        Swal.fire('¡Ingreso exitoso!');
         this.emisorService.updateEmisorData(emisorData);
         this.router.navigate(['/home']); // aquí se navega a la ruta /home
   
       } else {
         // mostrar mensaje de error o hacer otra acción
-        Swal.fire('¡Error!');
+        Swal.fire('¡Emisor incorrecto!');
         
       }
   
