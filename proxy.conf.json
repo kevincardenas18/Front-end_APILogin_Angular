@@ -1,5 +1,5 @@
 {
-  "/api/*": {
+  "/*": {
     "target": "http://deployMetodologia.somee.com/",
     "secure": false,
     "logLevel": "debug",
