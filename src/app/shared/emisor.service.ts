@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EmisorService {
-  private emisorData = {nombre: '', ruc: ''};
+  private emisorData = {compania: '', nombre: '', ruc: '' };
 
-  constructor() { }
+  constructor() {}
 
   updateEmisorData(data: any) {
     this.emisorData = data;

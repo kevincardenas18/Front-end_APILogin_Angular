@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center">
+<!-- <div class="d-flex align-items-center">
   <select class="form-select" [(ngModel)]="selectedEmisor" name="emisorSelect" (change)="onChangeEmisor($event)">
     <option value="" disabled selected>Selecciona un emisor</option>
     <option *ngFor="let emisor of emisores" [value]="emisor.Codigo" [selected]="emisor.NombreEmisor === emisores[0].NombreEmisor"><strong>{{ emisor.Codigo }} -</strong> {{ emisor.NombreEmisor }}</option>
@@ -6,6 +6,11 @@
   <div class="ms-2 d-flex">
     <button class="btn btn-primary" (click)="onSubmit()">Aceptar</button>
   </div>
+</div> -->
+
+<div>
+  <p>{{ mensaje }}</p>
+  <p>{{ mensaje2 }}</p>
 </div>
 
 <div class="formulario-nuevo-centro-costos">
@@ -14,12 +19,13 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>IdTrabajadaor</th>
-            <th>Tipo_trabajador</th> <!-- Nueva columna para los botones -->
-            <th>Apellido_Paterno</th>
-            <th>Apellido_Materno</th>
+            <th>Codigo</th>
+            <th>Trabajador</th>
+            <th>Tipo</th> <!-- Nueva columna para los botones -->
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
             <th>Nombres</th>
+            <th>Identificación</th>
             <th>Entidad_Bancaria</th>
             <th>CarnetIESS</th>
 

@@ -55,6 +55,7 @@ export class LoginComponent {
         });
         console.log(this.emisores); 
       });
+      
   }
   
 
@@ -87,7 +88,8 @@ export class LoginComponent {
         const responseObj = JSON.parse(data);
           
         const emisorData = {
-        nombre: responseObj[0].NOMBREEMISOR,
+        compania: responseObj[0].COMPANIA,
+        nombre: responseObj[0].NOMBREEMISOR.trim(),
         ruc: responseObj[0].RucUsuario,
       };
       if (this.emisorComp === emisorData.nombre) {
