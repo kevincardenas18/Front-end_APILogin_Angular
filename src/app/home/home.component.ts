@@ -210,6 +210,7 @@ export class HomeComponent implements OnInit {
     this.nombreUsuario = 'Desactivado';
     this.mostrarFormularioCentroCostos = false;
     this.mostrarMovimientosPlanilla = false;
+    this.mostrarTrabajadores = false;
     localStorage.setItem('nombreUsuario', 'Desactivado'); // Reemplaza "nombreUsuario" con el valor real
   }
 
