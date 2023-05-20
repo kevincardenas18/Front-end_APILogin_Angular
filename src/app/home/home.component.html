@@ -60,12 +60,16 @@
             <li class="nav-item" style="margin-top: 0px;">
               <a class="nav-link" (click)="MovimientoPlanilla()">Movimiento Planilla</a>
             </li>
+            <li class="nav-item" style="margin-top: 0px;">
+              <a class="nav-link" (click)="Trabajadores()">Trabajadores</a>
+            </li>
             <li class="nav-item" style="margin-top: 25px;">
               <label class="nav-link text-black">AUTORIZADOR</label>
             </li>
             <li *ngIf="sesionIniciada" class="nav-item" style="margin-left: 15px;">
               <button *ngIf="sesionIniciada" class="btn btn-danger mb-3" (click)="cerrarSesionAutorizador()">Desactivar</button>
             </li>
+
             <li *ngIf="!sesionIniciada" class="nav-item" style="margin-left: 10px;">
               <button class="btn btn-primary mb-3" (click)="Autorizador()">Activar</button>
             </li>
@@ -79,6 +83,9 @@
           </div>
           <div *ngIf="mostrarMovimientosPlanilla">
             <app-movimiento-planilla></app-movimiento-planilla>
+          </div>
+          <div *ngIf="Trabajadores">
+            <app-trabajadores-select></app-trabajadores-select>
           </div>
         </div>
       </div>

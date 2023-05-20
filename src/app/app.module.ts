@@ -14,6 +14,7 @@ import { MovimientoPlanillaComponent } from './movimiento-planilla/movimiento-pl
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuard } from './auth.guard';
 import { CentroCostosComponent } from './centro-costos/centro-costos.component';
+import { TrabajadoresSelectComponent } from './trabajadores/trabajadores-select/trabajadores-select.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CentroCostosComponent } from './centro-costos/centro-costos.component';
     EditarComponent,
     MovimientoPlanillaComponent,
     CentroCostosComponent,
+    TrabajadoresSelectComponent,
   ],
   imports: [
     BrowserModule,

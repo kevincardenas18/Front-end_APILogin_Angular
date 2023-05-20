@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   nombreUsuario: string = 'Desactivado';
   sesionIniciada: boolean = false;
   mostrarMovimientosPlanilla: boolean = false;
+  mostrarTrabajadores: boolean = false;
   
 
   constructor(private emisorService: EmisorService,private sanitizer: DomSanitizer, private http: HttpClient,private router: Router) {
@@ -121,10 +122,18 @@ export class HomeComponent implements OnInit {
                   // Lógica específica para CentroCostos
                   this.mostrarFormularioCentroCostos = true;
                   this.mostrarMovimientosPlanilla = false;
+                  this.mostrarTrabajadores = false;
                 } else if (origen === 'MovimientoPlanilla') {
                   // Lógica específica para MovimientoPlanilla
                   this.mostrarMovimientosPlanilla = true;
                   this.mostrarFormularioCentroCostos = false;
+                  this.mostrarTrabajadores = false;
+                }
+                else if (origen === 'Trabajadores') {
+                  // Lógica específica para MovimientoPlanilla
+                  this.mostrarTrabajadores = true;
+                  this.mostrarFormularioCentroCostos = false;
+                  this.mostrarMovimientosPlanilla = false;
                 }
                 this.nombreUsuario = responseObj[0].NOMBREUSUARIO;
                 this.sesionIniciada = true;
@@ -167,7 +176,7 @@ export class HomeComponent implements OnInit {
       // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
       this.mostrarFormularioCentroCostos = true;
       this.mostrarMovimientosPlanilla = false;
-    
+      this.mostrarTrabajadores = false;
   }
 
   MovimientoPlanilla(): void {
@@ -175,8 +184,18 @@ export class HomeComponent implements OnInit {
       // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
       this.mostrarMovimientosPlanilla = true;
       this.mostrarFormularioCentroCostos = false;
+      this.mostrarTrabajadores = false;
     
   }
+
+  Trabajadores(): void {
+    
+    // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
+    this.mostrarTrabajadores = true;
+    this.mostrarFormularioCentroCostos = false;
+    this.mostrarMovimientosPlanilla = false;
+  
+}
 
   cerrarSesionAutorizador(): void {
     Swal.fire({
