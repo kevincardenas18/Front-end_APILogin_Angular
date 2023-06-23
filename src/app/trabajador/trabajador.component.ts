@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component,TemplateRef, ViewChild  } from '@angular/core';
 import { EmisorService } from 'src/app/shared/emisor.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -8,21 +8,20 @@ import Swal from 'sweetalert2';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
 import { FormsModule, NgForm } from '@angular/forms';
 
-@Component({
-  selector: 'app-trabajadores-select',
-  templateUrl: './trabajadores-select.component.html',
-  styleUrls: ['./trabajadores-select.component.css']
-})
-export class TrabajadoresSelectComponent {
 
+@Component({
+  selector: 'app-trabajador',
+  templateUrl: './trabajador.component.html',
+  styleUrls: ['./trabajador.component.css']
+})
+export class TrabajadorComponent {
   trabajadores: any[] = [];
   datosTablaOriginal: any[] = [];
   currentPage = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 15;
   emisorSeleccionado: any;
   mensaje: any = "";
   mensaje2: any = "";
-
   tipoTrabajadorOptions: any[] = [];
   generoOptions: any[] = [];
   centroCostosOptions: any[] = [];
@@ -72,22 +71,19 @@ export class TrabajadoresSelectComponent {
   boniEspecial: any
   boniComplementaria: any
   fondoReserva: any
-  
-  
-  constructor(private modalService: BsModalService, private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router) {
-    
+
+  constructor(private modalService: BsModalService,private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router) {
   } 
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
+  
   ngOnInit() {
     this.fetchTrabajadores()
 
-
-
-    this.http.get<any[]>('/api/Api/trabajador/GetTipoTrabajador')
+    this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetTipoTrabajador')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -102,7 +98,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetGenero')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetGenero')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -117,7 +113,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/centroCostos')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/api/v1/centrocostos')
       .pipe(
         map(data => data.map(item => ({
           value: item.Codigo, // Usar DesripMovimientoExce como valor
@@ -132,7 +128,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetEstadoTrabajador')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetEstadoTrabajador')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -147,7 +143,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetTipoContrato')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetTipoContrato')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -162,7 +158,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetTipoCese')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetTipoCese')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -177,7 +173,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetEstadoCivil')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetEstadoCivil')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -192,7 +188,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetEsReingreso')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetEsReingreso')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -207,7 +203,7 @@ export class TrabajadoresSelectComponent {
           }
       );
 
-      this.http.get<any[]>('/api/Api/trabajador/GetTipoCuenta')
+      this.http.get<any[]>('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/GetTipoCuenta')
       .pipe(
         map(data => data.map(item => ({
           value: item.Descripcion, // Usar DesripMovimientoExce como valor
@@ -221,12 +217,7 @@ export class TrabajadoresSelectComponent {
             console.log(error);
           }
       );
-
-
-
-
   }
-
 
   fetchTrabajadores(): void {
     const codigoEmisorSeleccionado = this.emisorService.getEmisorData().compania;
@@ -234,7 +225,7 @@ export class TrabajadoresSelectComponent {
       .set('page', this.currentPage.toString())
       .set('itemsPerPage', this.itemsPerPage.toString());
   
-    this.http.get<any[]>(`/api/Api//trabajador/select?sucursal=${codigoEmisorSeleccionado}`).subscribe(
+    this.http.get<any[]>(`https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/select?sucursal=${codigoEmisorSeleccionado}`).subscribe(
       data => {
         this.trabajadores = data;
         this.datosTablaOriginal = data;
@@ -244,13 +235,6 @@ export class TrabajadoresSelectComponent {
       }
     );
   }
-
-
-
-
-
-
-
 
   eliminarTrabajador(sucursal: number, idEmpleado: string) {
     const params = new HttpParams()
@@ -268,7 +252,7 @@ export class TrabajadoresSelectComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.get('/api/Api/trabajador/delete', { params }).subscribe(
+        this.http.get('https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/delete', { params }).subscribe(
           result => {
             Swal.fire('Se ha eliminado exitosamente').then(() => {
               // Realizar acciones adicionales después de eliminar
@@ -421,7 +405,7 @@ export class TrabajadoresSelectComponent {
     Remuneracion_Minima: number,
     Fondo_Reserva: string
   ): void {
-    const url = `/api/Api/trabajador/Insert?` +
+    const url = `https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/Insert?` +
       `COMP_Codigo=${COMP_Codigo}` +
       `&Tipo_trabajador=${Tipo_trabajador}` +
       `&Apellido_Paterno=${Apellido_Paterno}` +
@@ -919,7 +903,7 @@ export class TrabajadoresSelectComponent {
     CuotaCuentaCorriente: number,
     Fondo_Reserva: string
   ): void {
-    const url = `/api/Api/trabajador/Edit?` +
+    const url = `https://aspnetback.azurewebsites.net/api/ControladorAPI/trabajador/Edit?` +
       `COMP_Codigo=${COMP_Codigo}` +
       `&Id_Trabajador=${Id_Trabajador}` +
       `&Tipo_trabajador=${Tipo_trabajador}` +
@@ -1061,11 +1045,5 @@ validarIdentificacion() {
     }else{
       this.identificacionInvalid = true;
     }
+} 
 }
-
-
-
-
-
-}
-

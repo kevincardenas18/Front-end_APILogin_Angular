@@ -1,0 +1,18 @@
+<br>
+<h1>Afecta Impuesto Renta</h1>
+<div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let afr of afectaImpRenta">
+            <td>{{ afr.CodigoMovimientoExce }}</td>
+            <td>{{ afr.DesripMovimientoExce }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

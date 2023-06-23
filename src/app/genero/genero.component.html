@@ -1,0 +1,23 @@
+<br>
+<h1>Genero</h1>
+<div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let genero of genero">
+            <td>{{ genero.Codigo }}</td>
+            <td>{{ genero.Descripcion }}</td>
+            <!-- <td>
+                <button class="btn btn-sm btn-primary me-2" (click)="editarMovimientoPlanilla(movimiento.CodigoConcepto)">Editar</button>
+                <button class="btn btn-sm btn-danger" (click)="eliminarMovimientoPlanilla(movimiento.CodigoConcepto, movimiento.Concepto)">Eliminar</button>
+            </td> -->
+            </tr>
+        </tbody>
+    </table>
+    <!-- Navegación de paginación -->
+</div>

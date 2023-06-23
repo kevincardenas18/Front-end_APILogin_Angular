@@ -1,0 +1,56 @@
+.table-container {
+    overflow-x: auto;
+}
+
+.validation-message {
+    color: red;
+}
+
+
+input:invalid {
+    border: 2px dashed red;
+}
+
+input:valid {
+    border: 2px solid black;
+}
+
+select:invalid {
+    border: 2px dashed red;
+}
+
+/* Estilo general del formulario */
+.responsive-form {
+    column-gap: 20px;
+}
+
+  /* Estilo para pantallas de hasta 1200px */
+@media screen and (max-width: 1900px) {
+    .responsive-form {
+        column-count: 4;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .responsive-form {
+        column-count: 3;
+    }
+}
+
+  /* Estilo para pantallas de hasta 768px */
+@media screen and (max-width: 768px) {
+    .responsive-form {
+        column-count: 2;
+    }
+}
+
+  /* Estilo para pantallas de hasta 480px */
+@media screen and (max-width: 480px) {
+    .responsive-form {
+        column-count: 1;
+    }
+    .responsive-form .form-group input,
+    .responsive-form .form-group select {
+        width: 70%;
+    }
+}
