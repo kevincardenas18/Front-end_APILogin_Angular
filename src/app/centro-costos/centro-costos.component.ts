@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { AutorizadorService } from 'src/app/shared/autorizador.service';
 
 @Component({
   selector: 'app-centro-costos',
@@ -15,7 +16,7 @@ export class CentroCostosComponent {
   currentPage = 1;
   itemsPerPage = 10;
 
-  constructor(private http: HttpClient) {} // Inyecta HttpClient en el constructor
+  constructor(private http: HttpClient, public autorizadorService: AutorizadorService) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
     this.fetchCentroCostos()

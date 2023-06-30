@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { EmisorService } from 'src/app/shared/emisor.service';
+import { AutorizadorService } from 'src/app/shared/autorizador.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';  
@@ -74,7 +75,7 @@ export class TrabajadoresSelectComponent {
   fondoReserva: any
   
   
-  constructor(private modalService: BsModalService, private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router) {
+  constructor(private modalService: BsModalService, private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router, public autorizadorService: AutorizadorService) {
     
   } 
 
@@ -84,7 +85,7 @@ export class TrabajadoresSelectComponent {
 
   ngOnInit() {
     this.fetchTrabajadores()
-
+    //console.log('Sesión iniciada:', this.autorizadorService.sesionIniciada);
 
 
     this.http.get<any[]>('/api/Api/trabajador/GetTipoTrabajador')

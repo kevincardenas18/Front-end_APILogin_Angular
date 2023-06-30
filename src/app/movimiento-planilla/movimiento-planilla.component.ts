@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { AutorizadorService } from 'src/app/shared/autorizador.service';
 
 
 
@@ -28,7 +29,7 @@ export class MovimientoPlanillaComponent {
   conceptoBusqueda: string = '';
   datosTablaOriginal: any[] = [];
 
-  constructor(private http: HttpClient) {} // Inyecta HttpClient en el constructor
+  constructor(private http: HttpClient, public autorizadorService: AutorizadorService) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
     this.fetchMovimientosPlanilla();

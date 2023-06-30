@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { CentroCostosComponent } from './centro-costos/centro-costos.component';
 import { TrabajadoresSelectComponent } from './trabajadores/trabajadores-select/trabajadores-select.component';
 import { EmisorService } from './shared/emisor.service';
+import { AutorizadorService } from './shared/autorizador.service';
 import { TipoTrabajadorComponent } from './tipo-trabajador/tipo-trabajador.component';
 import { EstadoTrabajadorComponent } from './estado-trabajador/estado-trabajador.component';
 import { TipoContratoComponent } from './tipo-contrato/tipo-contrato.component';
@@ -62,7 +63,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   ],
   providers: [
     AuthGuard,
-    EmisorService
+    EmisorService,
+    AutorizadorService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AutorizadorService } from '../shared/autorizador.service';
 
 
 @Component({
@@ -30,13 +31,14 @@ export class HomeComponent implements OnInit {
   mostrarTrabajadores: boolean = false;
   
 
-  constructor(private emisorService: EmisorService,private sanitizer: DomSanitizer, private http: HttpClient,private router: Router) {
+  constructor(private emisorService: EmisorService,private sanitizer: DomSanitizer, private http: HttpClient,private router: Router, private autorizadorService: AutorizadorService) {
     this.logoUrl = this.sanitizer.bypassSecurityTrustUrl('assets/img/logo-taller.svg');  
     this.fechaActual = new Date().toLocaleDateString();
     const sesionGuardada = localStorage.getItem('sesionIniciada');
     this.sesionIniciada = sesionGuardada === 'true';
+    this.autorizadorService.sesionIniciada = sesionGuardada === 'true';
     const nombreUsuarioGuardado = localStorage.getItem('nombreUsuario');
-    this.sesionIniciada = sesionGuardada === 'true';
+    this.autorizadorService.sesionIniciada = sesionGuardada === 'true';
     if (nombreUsuarioGuardado !== null) {
       this.nombreUsuario = nombreUsuarioGuardado;
     }    
@@ -137,6 +139,7 @@ export class HomeComponent implements OnInit {
                 }
                 this.nombreUsuario = responseObj[0].NOMBREUSUARIO;
                 this.sesionIniciada = true;
+                this.autorizadorService.sesionIniciada = true;
                 // Al iniciar sesión
                 localStorage.setItem('sesionIniciada', 'true');
                 localStorage.setItem('nombreUsuario', responseObj[0].NOMBREUSUARIO); // Reemplaza "nombreUsuario" con el valor real
@@ -207,6 +210,7 @@ export class HomeComponent implements OnInit {
       showConfirmButton: false
     });
     this.sesionIniciada = false;
+    this.autorizadorService.sesionIniciada = false;
     this.nombreUsuario = 'Desactivado';
     this.mostrarFormularioCentroCostos = false;
     this.mostrarMovimientosPlanilla = false;
@@ -216,6 +220,7 @@ export class HomeComponent implements OnInit {
 
   cerrarSesionAPP(){
     this.sesionIniciada = false;
+    this.autorizadorService.sesionIniciada = false;
     this.emisorService.clearEmisorData();  
     localStorage.removeItem('sesionIniciada');
     this.router.navigate(['/']);  

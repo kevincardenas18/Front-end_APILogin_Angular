@@ -194,7 +194,7 @@
   </ng-template>
   
 
-  <button class="btn btn-primary mb-3" (click)="nuevoTrabajador()">Crear nuevo Trabajador</button>
+  <button *ngIf="autorizadorService.sesionIniciada" class="btn btn-primary mb-3" (click)="nuevoTrabajador()">Crear nuevo Trabajador</button>
   <div class="formulario-nuevo-centro-costos">
       <div class="table-container">
         <table class="table table-hover">
@@ -242,6 +242,7 @@
                     <th>Remuneracion_Minima</th>
                     <th>CuotaCuentaCorriente</th>
                     <th>Fondo_Reserva</th>
+                    <th *ngIf="autorizadorService.sesionIniciada">Acción</th>
                     <!-- <th>Mensaje</th> -->
                 </tr>
             </thead>
@@ -290,7 +291,7 @@
                 <td>{{ cc.CuotaCuentaCorriente }}</td>
                 <td>{{ cc.Fondo_Reserva }}</td>
                 <!-- <td>{{ cc.Mensaje }}</td> -->
-                <td>
+                <td *ngIf="autorizadorService.sesionIniciada">
                   <button class="btn btn-sm btn-primary me-2" (click)="editarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Editar</button>
                   <button class="btn btn-sm btn-danger" (click)="eliminarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Eliminar</button>
                 </td>

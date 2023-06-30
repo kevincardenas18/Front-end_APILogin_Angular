@@ -12,7 +12,7 @@
     </div>
 
     <br>
-    <button class="btn btn-primary mb-3" (click)="nuevoCentroCostos()">Crear nuevo Centro de Costos</button>
+    <button *ngIf="autorizadorService.sesionIniciada" class="btn btn-primary mb-3" (click)="nuevoCentroCostos()">Crear nuevo Centro de Costos</button>
   
     <br>
     <div class="table-container">
@@ -22,14 +22,14 @@
           <tr>
             <th>Código</th>
             <th>Nombre Centro de Costos</th>
-            <th>Acciones</th> <!-- Nueva columna para los botones -->
+            <th *ngIf="autorizadorService.sesionIniciada">Acciones</th> <!-- Nueva columna para los botones -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let cc of (centroCostosBusqueda.length > 0 ? centroCostosBusqueda : centroCostos) | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
             <td>{{ cc.Codigo }}</td>
             <td>{{ cc.NombreCentroCostos }}</td>
-            <td>
+            <td *ngIf="autorizadorService.sesionIniciada">
               <button class="btn btn-sm btn-primary me-2" (click)="editarCentroCostos(cc.Codigo)">Editar</button>
               <button class="btn btn-sm btn-danger" (click)="eliminarCentroCostos(cc.Codigo, cc.NombreCentroCostos)">Eliminar</button>
             </td>
