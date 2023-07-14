@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AutorizadorService } from 'src/app/shared/autorizador.service';
 
@@ -296,31 +295,106 @@ export class MovimientoPlanillaComponent {
     });
   }
   
+  // guardarNuevoMovimientoPlanilla(
+  //   concepto: string, prioridad: string, tipoOperacion: string, cuenta1: string, cuenta2: string, cuenta3: string, cuenta4: string,
+  //   movimientoExcepcion1: string, movimientoExcepcion2: string, movimientoExcepcion3: string,
+  //   trabajaAplicaIess: string, trabajaProyectoImpRenta: string, aplicaProyRenta: string, empresaAfectaIess: string
+  // ) {
+  //   if (
+  //     concepto && prioridad && tipoOperacion && cuenta1 && cuenta2 && cuenta3 && cuenta4 && movimientoExcepcion1 &&
+  //     movimientoExcepcion2 && movimientoExcepcion3 && trabajaAplicaIess && trabajaProyectoImpRenta && aplicaProyRenta && empresaAfectaIess
+  //   ) {
+  //     const url = `/api/Api/movimientosPlanilla/insert?conceptos=${encodeURIComponent(concepto)}&prioridad=${encodeURIComponent(prioridad)}&tipoOperacion=${encodeURIComponent(tipoOperacion)}&cuenta1=${encodeURIComponent(cuenta1)}&cuenta2=${encodeURIComponent(cuenta2)}&cuenta3=${encodeURIComponent(cuenta3)}&cuenta4=${encodeURIComponent(cuenta4)}&movimientoExcepcion1=${encodeURIComponent(movimientoExcepcion1)}&movimientoExcepcion2=${encodeURIComponent(movimientoExcepcion2)}&movimientoExcepcion3=${encodeURIComponent(movimientoExcepcion3)}&Traba_Aplica_iess=${encodeURIComponent(trabajaAplicaIess)}&Traba_Proyecto_imp_renta=${encodeURIComponent(trabajaProyectoImpRenta)}&Aplica_Proy_Renta=${encodeURIComponent(aplicaProyRenta)}&Empresa_Afecta_Iess=${encodeURIComponent(empresaAfectaIess)}`;
+  
+  //     this.http.get(url).subscribe(
+  //       () => {
+  //         Swal.fire('Éxito', 'El movimiento de planilla se ha creado correctamente', 'success');
+  //         this.fetchMovimientosPlanilla();
+  //       },
+  //       error => {
+  //         console.log(error);
+  //         Swal.fire('Error', 'Se produjo un error al crear el movimiento de planilla', 'error');
+  //       }
+  //     );
+  //   } else {
+  //     Swal.fire('Error', 'Todos los campos son requeridos', 'error');
+  //   }
+  // }  
+
   guardarNuevoMovimientoPlanilla(
-    concepto: string, prioridad: string, tipoOperacion: string, cuenta1: string, cuenta2: string, cuenta3: string, cuenta4: string,
-    movimientoExcepcion1: string, movimientoExcepcion2: string, movimientoExcepcion3: string,
-    trabajaAplicaIess: string, trabajaProyectoImpRenta: string, aplicaProyRenta: string, empresaAfectaIess: string
+    concepto: string,
+    prioridad: string,
+    tipoOperacion: string,
+    cuenta1: string,
+    cuenta2: string,
+    cuenta3: string,
+    cuenta4: string,
+    movimientoExcepcion1: string,
+    movimientoExcepcion2: string,
+    movimientoExcepcion3: string,
+    trabajaAplicaIess: string,
+    trabajaProyectoImpRenta: string,
+    aplicaProyRenta: string,
+    empresaAfectaIess: string
   ) {
+    const url = `/api/Api/movimientosPlanilla/insert?conceptos=${concepto}&prioridad=${prioridad}&tipoOperacion=${tipoOperacion}&cuenta1=${cuenta1}&cuenta2=${cuenta2}&cuenta3=${cuenta3}&cuenta4=${cuenta4}&movimientoExcepcion1=${movimientoExcepcion1}&movimientoExcepcion2=${movimientoExcepcion2}&movimientoExcepcion3=${movimientoExcepcion3}&Traba_Aplica_iess=${trabajaAplicaIess}&Traba_Proyecto_imp_renta=${trabajaProyectoImpRenta}&Aplica_Proy_Renta=${aplicaProyRenta}&Empresa_Afecta_Iess=${empresaAfectaIess}`;
+  
+    const params = {
+      conceptos: concepto,
+      prioridad: prioridad,
+      tipooperacion: tipoOperacion,
+      cuenta1: cuenta1,
+      cuenta2: cuenta2,
+      cuenta3: cuenta3,
+      cuenta4: cuenta4,
+      MovimientoExcepcion1: movimientoExcepcion1,
+      MovimientoExcepcion2: movimientoExcepcion2,
+      MovimientoExcepcion3: movimientoExcepcion3,
+      trabajaAplicaIess: trabajaAplicaIess,
+      trabajaProyectoImpRenta: trabajaProyectoImpRenta,
+      aplicaProyRenta: aplicaProyRenta,
+      empresaAfectaIess: empresaAfectaIess
+    };
+
+  //   if (
+  //     concepto && prioridad && tipoOperacion && cuenta1 && cuenta2 && cuenta3 && cuenta4 && movimientoExcepcion1 &&
+  //     movimientoExcepcion2 && movimientoExcepcion3 && trabajaAplicaIess && trabajaProyectoImpRenta && aplicaProyRenta && empresaAfectaIess
+  //   ) {
+  //     const url = `/api/Api/movimientosPlanilla/insert?conceptos=${encodeURIComponent(concepto)}&prioridad=${encodeURIComponent(prioridad)}&tipoOperacion=${encodeURIComponent(tipoOperacion)}&cuenta1=${encodeURIComponent(cuenta1)}&cuenta2=${encodeURIComponent(cuenta2)}&cuenta3=${encodeURIComponent(cuenta3)}&cuenta4=${encodeURIComponent(cuenta4)}&movimientoExcepcion1=${encodeURIComponent(movimientoExcepcion1)}&movimientoExcepcion2=${encodeURIComponent(movimientoExcepcion2)}&movimientoExcepcion3=${encodeURIComponent(movimientoExcepcion3)}&Traba_Aplica_iess=${encodeURIComponent(trabajaAplicaIess)}&Traba_Proyecto_imp_renta=${encodeURIComponent(trabajaProyectoImpRenta)}&Aplica_Proy_Renta=${encodeURIComponent(aplicaProyRenta)}&Empresa_Afecta_Iess=${encodeURIComponent(empresaAfectaIess)}`;
+  
+  //     this.http.get(url).subscribe(
+  //       () => {
+  //         Swal.fire('Éxito', 'El movimiento de planilla se ha creado correctamente', 'success');
+  //         this.fetchMovimientosPlanilla();
+  //       },
+  //       error => {
+  //         console.log(error);
+  //         Swal.fire('Error', 'Se produjo un error al crear el movimiento de planilla', 'error');
+  //       }
+  //     );
+  //   } else {
+  //     Swal.fire('Error', 'Todos los campos son requeridos', 'error');
+  //   }
+  // } 
     if (
       concepto && prioridad && tipoOperacion && cuenta1 && cuenta2 && cuenta3 && cuenta4 && movimientoExcepcion1 &&
       movimientoExcepcion2 && movimientoExcepcion3 && trabajaAplicaIess && trabajaProyectoImpRenta && aplicaProyRenta && empresaAfectaIess
     ) {
-      const url = `/api/Api/movimientosPlanilla/insert?conceptos=${encodeURIComponent(concepto)}&prioridad=${encodeURIComponent(prioridad)}&tipoOperacion=${encodeURIComponent(tipoOperacion)}&cuenta1=${encodeURIComponent(cuenta1)}&cuenta2=${encodeURIComponent(cuenta2)}&cuenta3=${encodeURIComponent(cuenta3)}&cuenta4=${encodeURIComponent(cuenta4)}&movimientoExcepcion1=${encodeURIComponent(movimientoExcepcion1)}&movimientoExcepcion2=${encodeURIComponent(movimientoExcepcion2)}&movimientoExcepcion3=${encodeURIComponent(movimientoExcepcion3)}&Traba_Aplica_iess=${encodeURIComponent(trabajaAplicaIess)}&Traba_Proyecto_imp_renta=${encodeURIComponent(trabajaProyectoImpRenta)}&Aplica_Proy_Renta=${encodeURIComponent(aplicaProyRenta)}&Empresa_Afecta_Iess=${encodeURIComponent(empresaAfectaIess)}`;
-  
-      this.http.get(url).subscribe(
-        () => {
-          Swal.fire('Éxito', 'El movimiento de planilla se ha creado correctamente', 'success');
-          this.fetchMovimientosPlanilla();
-        },
-        error => {
-          console.log(error);
-          Swal.fire('Error', 'Se produjo un error al crear el movimiento de planilla', 'error');
-        }
-      );
-    } else {
+    this.http.post(url, { params }).subscribe(
+      () => {
+        Swal.fire('Éxito', 'El movimiento de planilla se ha creado correctamente', 'success');
+        this.fetchMovimientosPlanilla();
+      },
+      error => {
+        console.log(error);
+        Swal.fire('Error', 'Se produjo un error al crear el movimiento de planilla', 'error');
+      }
+    );
+    }else{
       Swal.fire('Error', 'Todos los campos son requeridos', 'error');
     }
   }
+  
 
   validarExcepciones1y2(movimientoExcepcionCodigo: string) {
     const excepciones = [

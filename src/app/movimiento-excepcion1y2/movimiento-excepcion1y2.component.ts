@@ -16,7 +16,7 @@ export class MovimientoExcepcion1y2Component {
   }
   
   getMovExcepcion1y2(): void {
-    this.http.get<any[]>('/api/Api/ObtenerMovimientosExcepcion1y2').subscribe(
+    this.http.get<any[]>('/api/Api/MovimientosExcepcion1y2').subscribe(
       data => {
         this.movExcepcion1y2 = data;
       },

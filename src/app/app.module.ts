@@ -29,6 +29,8 @@ import { AfectaIessComponent } from './afecta-iess/afecta-iess.component';
 import { AfectaImpRentaComponent } from './afecta-imp-renta/afecta-imp-renta.component';
 // Importa el módulo ModalModule desde ngx-bootstrap
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     NgxPaginationModule,
     ModalModule.forRoot(),
+    MatTableModule,
+    MatIconModule,
   ],
   providers: [
     AuthGuard,

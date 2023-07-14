@@ -16,7 +16,7 @@ export class TipoCeseComponent {
   }
   
   getTipoCese(): void {
-    this.http.get<any[]>('/api/Api/GetTipoCese').subscribe(
+    this.http.get<any[]>('/api/Api/trabajador/GetTipoCese').subscribe(
       data => {
         this.tipoCese = data;
       },

@@ -285,3 +285,20 @@ button[type="submit"]:hover {
 .sidebar ul li a.nav-link.active {
   color: red;
 }
+
+
+/* Estilo para el texto en el enlace del submenú */
+#submenu .d-none.d-sm-inline {
+  color: black; /* Cambia el color del texto a rojo */
+  font-weight: bold;
+}
+
+.submenuO {
+  margin-top: 25px;
+  
+}
+
+.submenuO a {
+  text-decoration: none; /* Quitar subrayado */
+  color: black; /* Letras negras */
+}

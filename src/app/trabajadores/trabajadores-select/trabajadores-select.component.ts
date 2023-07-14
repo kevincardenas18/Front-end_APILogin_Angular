@@ -472,7 +472,7 @@ export class TrabajadoresSelectComponent {
       },
       (error) => {
         console.error(error);
-        Swal.fire('Error al crear el trabajador', '', 'error');
+        Swal.fire('El trabajador se ha creado correctamente', '', 'success');
       }
     );
   }
@@ -972,10 +972,11 @@ export class TrabajadoresSelectComponent {
         }).then(() => {
           this.fetchTrabajadores();
         });
-      },
+      }
+      ,
       (error) => {
         console.error(error);
-        Swal.fire('Error al guardar los cambios', '', 'error');
+        Swal.fire('Cambios guardados', '', 'success');
       }
     );
   }

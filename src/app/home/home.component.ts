@@ -30,6 +30,26 @@ export class HomeComponent implements OnInit {
   mostrarMovimientosPlanilla: boolean = false;
   mostrarTrabajadores: boolean = false;
   
+  mostrarTipoTrabajador: boolean = false;
+  mostrarEstadoTrabajador: boolean = false;
+  mostrarTipoContrato: boolean = false;
+  mostrarTipoCese: boolean = false;
+  mostrarTipoCuenta: boolean = false;
+  mostrarEstadoCivil: boolean = false;
+  mostrarGenero: boolean = false;
+  mostrarReingreso: boolean = false;
+  mostrarTipoOperacion: boolean = false;
+  mostrarMovExcepcion1y2: boolean= false;
+  mostrarMovExcepcion3: boolean = false;
+  mostrarAfectaIESS: boolean = false;
+  mostrarAfectaImpRenta: boolean = false;
+  mostrarNivelSalarial: boolean = false;
+  mostrarCategoriaOcupacional: boolean = false;
+  mostrarFondoReserva: boolean = false;
+  mostrarDecimos: boolean = false;
+  mostrarTipoComision: boolean = false;
+  mostrarPeriodoVacacion: boolean = false;
+  componenteActivo: any
 
   constructor(private emisorService: EmisorService,private sanitizer: DomSanitizer, private http: HttpClient,private router: Router, private autorizadorService: AutorizadorService) {
     this.logoUrl = this.sanitizer.bypassSecurityTrustUrl('assets/img/logo-taller.svg');  
@@ -175,30 +195,124 @@ export class HomeComponent implements OnInit {
   }
 
   CentroCostos(): void {
-    
-      // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
-      this.mostrarFormularioCentroCostos = true;
-      this.mostrarMovimientosPlanilla = false;
-      this.mostrarTrabajadores = false;
+     this.ocultarTodosLosComponentes();
+     this.componenteActivo = 'CentroCostos';
+      // // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
+      // this.mostrarFormularioCentroCostos = true;
+      // this.mostrarMovimientosPlanilla = false;
+      // this.mostrarTrabajadores = false;
   }
 
   MovimientoPlanilla(): void {
-    
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'MovimientoPlanilla';
       // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
-      this.mostrarMovimientosPlanilla = true;
-      this.mostrarFormularioCentroCostos = false;
-      this.mostrarTrabajadores = false;
+      // this.mostrarMovimientosPlanilla = true;
+      // this.mostrarFormularioCentroCostos = false;
+      // this.mostrarTrabajadores = false;
     
   }
 
   Trabajadores(): void {
-    
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'Trabajadores';
     // Aquí puedes colocar la lógica para mostrar el contenido del "Centro de Costos"
-    this.mostrarTrabajadores = true;
-    this.mostrarFormularioCentroCostos = false;
-    this.mostrarMovimientosPlanilla = false;
+    // this.mostrarTrabajadores = true;
+    // this.mostrarFormularioCentroCostos = false;
+    // this.mostrarMovimientosPlanilla = false;
   
-}
+  }
+
+  TipoTrabajador(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'TipoTrabajador';
+  }
+
+  EstadoTrabajador(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'EstadoTrabajador';
+  }
+
+  TipoContrato(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'TipoContrato';
+  }
+
+  TipoCese(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'TipoCese';
+  }
+
+  TipoCuenta(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'TipoCuenta';
+  }
+
+  EstadoCivil(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'EstadoCivil';
+  }
+
+  Genero(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'Genero';
+  }
+
+  Reingreso(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'Reingreso';
+  }
+
+  TipoOperacion(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'TipoOperacion';
+  }
+
+  MovimientoExcepcion1y2(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'MovimientoExcepcion1y2';
+  }
+
+  MovimientoExcepcion3(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'MovimientoExcepcion3';
+  }
+
+  AfectaIESS(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'AfectaIESS';
+  }
+
+  AfectaImpRenta(): void {
+    this.ocultarTodosLosComponentes();
+    this.componenteActivo = 'AfectaImpRenta';
+  }
+
+  ocultarTodosLosComponentes(): void {
+    this.mostrarMovimientosPlanilla = false;
+    this.mostrarFormularioCentroCostos = false;
+    this.mostrarTrabajadores = false;
+    this.mostrarTipoTrabajador = false;
+    this.mostrarEstadoTrabajador = false;
+    this.mostrarTipoContrato  = false;
+    this.mostrarTipoCese  = false;
+    this.mostrarTipoCuenta = false;
+    this.mostrarEstadoCivil = false;
+    this.mostrarGenero = false;
+    this.mostrarReingreso = false;
+    this.mostrarTipoOperacion = false;
+    this.mostrarMovExcepcion1y2 = false;
+    this.mostrarMovExcepcion3 = false;
+    this.mostrarAfectaIESS = false;
+    this.mostrarAfectaImpRenta = false;
+    this.mostrarNivelSalarial = false;
+    this.mostrarCategoriaOcupacional = false;
+    this.mostrarFondoReserva = false;
+    this.mostrarDecimos = false;
+    this.mostrarTipoComision = false;
+    this.mostrarPeriodoVacacion = false;
+    // Ocultar los demás componentes aquí...
+  }
 
   cerrarSesionAutorizador(): void {
     Swal.fire({
