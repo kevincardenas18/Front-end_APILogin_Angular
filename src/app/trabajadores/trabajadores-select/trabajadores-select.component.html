@@ -12,8 +12,8 @@
   <input type="text" class="form-control" style="width: 350px;" placeholder="Buscar por nombres" [(ngModel)]="nombresBusqueda">
   <br>
 
-  <button class="btn btn-primary mb-3" (click)="nuevoTrabajador()">Crear nuevo Trabajador</button>
-  <button class="btn btn-success mb-3" (click)="descargarTablaExcel()">Descargar Excel</button>
+  <button class="btn btn-primary mb-3" *ngIf="autorizadorService.sesionIniciada" (click)="nuevoTrabajador()">Crear nuevo Trabajador</button>
+  <!-- <button class="btn btn-success mb-3" *ngIf="autorizadorService.sesionIniciada" (click)="descargarTablaExcel()">Descargar Excel</button> -->
 
   <ng-template #modalTemplate>
     <div class="modal-header">
@@ -516,8 +516,8 @@
                 <td>{{ cc.Fondo_Reserva }}</td>
                 <!-- <td>{{ cc.Mensaje }}</td> -->
                 <td>
-                  <button class="btn btn-sm btn-primary me-2" (click)="editarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Editar</button>
-                  <button class="btn btn-sm btn-danger" (click)="eliminarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Eliminar</button>
+                  <button class="btn btn-sm btn-primary me-2" *ngIf="autorizadorService.sesionIniciada" (click)="editarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Editar</button>
+                  <button class="btn btn-sm btn-danger" *ngIf="autorizadorService.sesionIniciada" (click)="eliminarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Eliminar</button>
                 </td>
             </tr>
           </tbody>
