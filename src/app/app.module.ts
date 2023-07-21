@@ -31,6 +31,7 @@ import { AfectaImpRentaComponent } from './afecta-imp-renta/afecta-imp-renta.com
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatIconModule } from '@angular/material/icon';
     ModalModule.forRoot(),
     MatTableModule,
     MatIconModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthGuard,

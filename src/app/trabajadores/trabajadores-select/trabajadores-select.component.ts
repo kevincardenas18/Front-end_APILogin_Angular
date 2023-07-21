@@ -10,16 +10,25 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
 import { FormsModule, NgForm } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { forkJoin,Observable, of } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
 @Component({
   selector: 'app-trabajadores-select',
   templateUrl: './trabajadores-select.component.html',
-  styleUrls: ['./trabajadores-select.component.css']
+  styleUrls: ['./trabajadores-select.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class TrabajadoresSelectComponent {
 
   trabajadores: any[] = [];
+  dataSource: any[] = [];
   datosTablaOriginal: any[] = [];
   currentPage = 1;
   itemsPerPage = 15;
@@ -390,6 +399,7 @@ export class TrabajadoresSelectComponent {
       data => {
         this.trabajadores = data;
         this.datosTablaOriginal = data;
+        this.dataSource = data;
       },
       error => {
         console.log(error);
@@ -896,6 +906,25 @@ export class TrabajadoresSelectComponent {
   }
 
 
+  title = 'angular-mat-table-example';
+
+ 
+  
+  columnsToDisplay = ['Identificacion', 'Apellido_Paterno', 'Apellido_Materno', 'Nombres', 'COMP_Codigo'];
+
+  toggleRow(element: { expanded: boolean; }) {
+    // Uncommnet to open only single row at once
+    // ELEMENT_DATA.forEach(row => {
+    //   row.expanded = false;
+    // })
+    element.expanded = !element.expanded
+  }
+
+  manageAllRows(flag: boolean) {
+    this.trabajadores.forEach(row => {
+      row.expanded = flag;
+    })
+  }
 
 
 }
