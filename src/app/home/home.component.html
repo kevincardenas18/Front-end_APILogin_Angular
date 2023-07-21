@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg">
+    <!-- <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,35 +22,67 @@
           
         </div>
       </div>
-    </nav>
+    </nav> -->
+    
+    <!-- <header>
+      <nav class="secondary-navigation">
+        <ul class="column">
+          <li>
+            <a href="#"><strong>COMPAÑIA:</strong> {{ emisorNombre }}</a>
+          </li>
+          <li>
+            <a href="#"><strong>RUC:</strong> {{ emisorRuc }}</a>
+          </li>
+        </ul>
+        <ul class="column">
+          <li>
+            <a href="#"><strong>FECHA: </strong>{{ fechaActual }}</a>
+          </li>
+          <li>
+            <a href="#"><strong>AUTORIZADOR: </strong>{{ nombreUsuario }}</a>
+          </li>
+        </ul>
+      </nav>
+    </header> -->
 
-    <nav class="secondary-navigation">
-      <ul class="column">
-        <li>
-          <a href="#"><strong>COMPAÑIA:</strong> {{ emisorNombre }}</a>
-        </li>
-        <li>
-          <a href="#"><strong>RUC:</strong> {{ emisorRuc }}</a>
-        </li>
-      </ul>
-      <ul class="column">
-        <li>
-          <a href="#"><strong>FECHA: </strong>{{ fechaActual }}</a>
-        </li>
-        <li>
-          <a href="#"><strong>AUTORIZADOR: </strong>{{ nombreUsuario }}</a>
-        </li>
-      </ul>
-    </nav>
+    <header class="secondary-navigation">
+        <div class="head-information">
+          <h2><strong>COMPAÑIA:</strong> {{ emisorNombre }}</h2>
+          <h2><strong>AUTORIZADOR: </strong>{{ nombreUsuario }}</h2>     
+        </div>
+        <div class="head-information">
+          <h2><strong>RUC:</strong> {{ emisorRuc }}</h2>
+          <h2><strong>FECHA: </strong>{{ fechaActual }}</h2>
+        </div>
+    </header>
+    
     
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3 sidebar" style="z-index: 0;">
+        <div class="col-3 sidebar" >
           <div class="logo-container">
             <img src="https://web.solmovsa.com/wp-content/uploads/2019/11/cropped-logo-transp250.png" alt="Logo de mi sitio web" class="logo">
           </div>
           <ul class="nav flex-column">
-            <li class="nav-item" style="margin-top: 45px;">
+            
+            <ul class="nav flex-column" data-bs-toggle="collapse" >
+              <li class="nav-item" style="margin-top: 45px;">
+                <label class="nav-link text-black"><i class="bi bi-tools"></i><span class="d-none d-sm-inline"> MANTENIMIETO</span></label>
+                <ul class="nav flex-column">
+                  <li class="nav-item" >
+                    <a class="nav-link" (click)="CentroCostos()"><i class="fs-4 bi-cash-stack"></i><span class="d-none d-sm-inline"> Centro de Costos</span></a>
+                  </li>
+                  <li class="nav-item" >
+                    <a class="nav-link" (click)="MovimientoPlanilla()"><i class="fs-4 bi-file-earmark-spreadsheet"></i><span class="d-none d-sm-inline"> Movimiento Planilla</span></a>
+                  </li>
+                  <li class="nav-item" >
+                    <a class="nav-link" (click)="Trabajadores()"><i class="fs-4 bi-person-vcard"></i><span class="d-none d-sm-inline"> Trabajadores</span></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <!-- <li class="nav-item" style="margin-top: 45px;">
               <label class="nav-link text-black">MANTENIMIETO</label>
             </li>
             <li class="nav-item" style="margin-top: 0px;">
@@ -61,15 +93,15 @@
             </li>
             <li class="nav-item" style="margin-top: 0px;">
               <a class="nav-link" (click)="Trabajadores()"><i class="fs-4 bi-person-vcard"></i> Trabajadores</a>
-            </li>
+            </li> -->
 
             <div class="submenuO">
-            <li>
+            <ul class="nav flex-column">
               <a href="#submenu2" data-bs-toggle="collapse" class="nav-item" id="submenu">
-                <i class="bi bi-caret-down-fill"></i><span class="ms-1 d-none d-sm-inline">OPERACIONES</span></a>
+                <i class="bi bi-gear-fill"></i><span class="ms-1 d-none d-sm-inline">OPERACIONES</span><i class="bi bi-caret-down-fill"></i></a>
               <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                 <li class="w-100">
-                  <a class="nav-link px-0 bi-gear"> <span class="d-none d-sm-inline"(click)="TipoOperacion()"> Tipo Operacion</span></a>
+                  <a class="nav-link px-0 bi-gear"><span class="d-none d-sm-inline"(click)="TipoOperacion()"> Tipo Operacion</span></a>
                 </li>
                 <li>
                   <a class="nav-link px-0 bi-explicit"> <span class="d-none d-sm-inline"(click)="MovimientoExcepcion1y2()"> Movimiento excepcion 1 y 2</span></a>
@@ -106,13 +138,26 @@
                 </li>
                 <li>
                   <a class="nav-link px-0 bi-arrow-counterclockwise"> <span class="d-none d-sm-inline"(click)="Reingreso()"> Reingreso</span></a>
-                </li>
-                 
+                </li>            
               </ul>
-            </li>
+            </ul>
             </div>
 
-            <li class="nav-item" style="margin-top: 25px;">
+            <ul class="nav flex-column" data-bs-toggle="collapse">
+              <li class="nav-item" style="margin-top: 25px;">
+                <label class="nav-link text-black"><i class="bi bi-check-circle-fill"></i><span class="d-none d-sm-inline"> AUTORIZADOR</span></label>
+                <ul class="nav flex-column">
+                  <li *ngIf="sesionIniciada" class="nav-item" style="margin-left: 15px;">
+                    <button *ngIf="sesionIniciada" class="btn btn-danger mb-3" (click)="cerrarSesionAutorizador()"><i class="bi bi-box-arrow-right"></i><span class="d-none d-sm-inline"> Desactivar</span></button>
+                  </li>
+                  <li *ngIf="!sesionIniciada" class="nav-item" style="margin-left: 10px;">
+                    <button class="btn btn-primary mb-3" (click)="Autorizador()"><i class="bi bi-box-arrow-in-right"></i><span class="d-none d-sm-inline"> Activar</span></button>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            
+            <!-- <li class="nav-item" style="margin-top: 25px;">
               <label class="nav-link text-black">AUTORIZADOR</label>
             </li>
             <li *ngIf="sesionIniciada" class="nav-item" style="margin-left: 15px;">
@@ -120,7 +165,20 @@
             </li>
             <li *ngIf="!sesionIniciada" class="nav-item" style="margin-left: 10px;">
               <button class="btn btn-primary mb-3" (click)="Autorizador()">Activar</button>
-            </li>
+            </li> -->
+
+            <ul class="nav flex-column" data-bs-toggle="collapse">
+              <li class="nav-item">
+                <label class="nav-link text-black"><i class="bi bi-person-circle"></i><span class="d-none d-sm-inline"> USUARIO</span></label>
+                <ul class="nav flex-column">
+                  <li  class="nav-item" style="margin-left: 15px;">
+                    <button class="btn btn-danger mb-3" routerLink="/"><i class="bi bi-box-arrow-right"></i><span class="d-none d-sm-inline"> Cerrar Sesión</span></button>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            
           </ul>
         </div>
 

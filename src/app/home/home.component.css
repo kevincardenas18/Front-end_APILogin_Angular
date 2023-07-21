@@ -1,149 +1,19 @@
-
-
-.welcome-container {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Altura del contenedor */
-}
-
-.welcome-message {
-  text-align: center;
-}
-
-.welcome-message {
-  text-align: center;
-  margin-top: 100px;
-}
-
-.welcome-message h1 {
-  font-size: 3em;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.welcome-message p {
-  font-size: 1.5em;
-  color: #777;
-}
-
-/* Estilos para el navbar */
-.navbar {
-  background-color: #d2d2d2;
-  padding-left: 15rem;
-}
-
-.navbar .navbar-nav .nav-link {
-  color: #333;
-}
-
-.navbar .navbar-nav .nav-link:hover,
-.navbar .navbar-nav .nav-link:focus {
-  color: #007bff;
-}
-
-.navbar .navbar-nav .active .nav-link {
-  color: #007bff;
-}
-
-
-nav {
-  background-color: #d2d2d2; /* Cambiar por el color que desees */
-  width: 100%;
-  padding-right: 3rem;
-}
-
-nav ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  flex: 1;
-}
-
-
-nav a {
-  color: #000000;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 5px;
-  text-align: center;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background-color: #cbcbcb;
-}
-
-
-.logo {  
-  display: inline-block;  
+.logo {
+  display: inline-block;
   width: 90%;
-  margin-right: 10px;  
-  vertical-align: middle;  
-}
-
-nav a[for="cerrarSesion"]{
-  /* Estilos CSS */
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  display:inline-block;
-  margin: 5px 8px 5px 8px; 
-  color: #f20b0b;
-}
-
-h1 {
-  text-align: center;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 h2 {
-  text-align: center;
+  font-size: large;
 }
 
 h5 {
   text-align: center;
-  margin: 10px 8px 20px 8px;;
+  margin: 10px 8px 20px 8px;
+  ;
   font-weight: bold;
-}
-
-button[for="nuevo"]{
-  background-color: #06b73e;
-  border: 2px solid #06b73e;
-  color: #fff;
-}
-
-/* Estilo del botón cuando el cursor está encima */
-.btn[for="nuevo"]:hover {
-  background-color: #059934;
-  color: #fff;
-}
-
-.card-container {
-  margin: 20px;
-}
-
-.card {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.table-container {
-  margin: 20px; /* margen de 20px */
-}
-
-.form-box {
-  max-width: 600px; /* Establece un ancho máximo de 600px */
-  margin: 0 auto; /* Centra la caja horizontalmente */
-  background-color: #f5f5f5; /* Cambia el color de fondo */
-  padding: 20px; /* Añade un poco de espacio entre el borde y los elementos internos */
-  border-radius: 5px; /* Agrega esquinas redondeadas a la caja */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
 }
 
 /* Estilos para los elementos internos */
@@ -153,107 +23,25 @@ label {
   font-weight: bold;
 }
 
-input[type="number"],
-input[type="text"] {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #0069d9;
-}
-.input-group.mb-3 {
-  max-width: 300px;
-}
-.btn-primary {
-  margin-left: 10px;
-}
-
-.input-group {
-  margin-left: 10px;
-}
-
-.navbar-text {
-  color: #000000 !important;
-}
-
-
 
 .secondary-navigation {
   display: flex;
-  justify-content: right; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: right;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
   flex-wrap: wrap;
-  gap: 5em;
+  background-color: #d2d2d2;
+}
+
+.head-information {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 
-.secondary-navigation a{
-  color: black;
-  font-size: 1.2em;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.column li {
-  margin-bottom: 10px;
-}
-
-
-.ms-auto.text-dark {
-  margin-right: 0; /* Elimina el margen derecho */
-}
-
-.navbar-text {
-  margin-right: 10px; /* Ajusta el margen derecho entre los elementos */
-}
-
-.navbar-text h6,
-.navbar-text p {
-  margin-bottom: 0; /* Elimina el espacio inferior entre los elementos */
-}
-
-.navbar-collapse .navbar-nav .nav-item {
-  /* Estilos personalizados para los elementos <li> */
-  margin-bottom: 10px;
-}
-
-.navbar-collapse .navbar-nav .nav-item h6 {
-  /* Estilos personalizados para los elementos <h6> dentro de los <li> */
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: black;
-}
-
-.navbar-nav li {
-  margin-left: 155px; /* Ajusta el valor según tus necesidades */
-}
-@media (max-width: 992px) {
-.navbar-nav li {
-  margin-left: 20px; /* Elimina el margen izquierdo */
-}
-}
 
 .sidebar {
   position: fixed;
@@ -289,16 +77,148 @@ button[type="submit"]:hover {
 
 /* Estilo para el texto en el enlace del submenú */
 #submenu .d-none.d-sm-inline {
-  color: black; /* Cambia el color del texto a rojo */
+  color: black;
+  /* Cambia el color del texto a rojo */
   font-weight: bold;
 }
 
 .submenuO {
   margin-top: 25px;
-  
+  padding-left: 15px;
 }
 
 .submenuO a {
-  text-decoration: none; /* Quitar subrayado */
-  color: black; /* Letras negras */
+  text-decoration: none;
+  /* Quitar subrayado */
+  color: black;
+  /* Letras negras */
+}
+
+
+
+@media (max-width: 767px) {
+
+  /* Estilos para pantallas pequeñas */
+  .logo {
+    display: inline-block;
+    width: 0%;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  h2 {
+    font-size: medium;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 80px;
+    background-color: #d2d2d2;
+    color: #fff;
+    padding: 5px;
+    margin-top: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: small;
+  }
+
+  .sidebar ul li a.nav-link {
+    color: black;
+    transition: color 0.3s;
+    font-size: smaller;
+  }
+
+  .secondary-navigation {
+    display: flex;
+    justify-content: left;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    flex-wrap: wrap;
+    background-color: #d2d2d2;
+  }
+
+  /* Estilo para el texto en el enlace del submenú */
+  #submenu .d-none.d-sm-inline {
+    color: black;
+    /* Cambia el color del texto a rojo */
+    font-weight: bold;
+    font-size: medium;
+  }
+
+  .head-information {
+    padding-top: 0.5rem;
+    padding-left: 6.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .content {
+    margin-left: 100px;
+  }
+}
+
+
+
+@media (min-width: 668px) and (max-width: 991px) {
+
+  /* Estilos para pantallas medianas */
+  h2 {
+    font-size: medium;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #d2d2d2;
+    color: #fff;
+    padding: 20px;
+    margin-top: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: small;
+  }
+
+  .sidebar ul li a.nav-link {
+    color: black;
+    transition: color 0.3s;
+    font-size: smaller;
+  }
+
+  .secondary-navigation {
+    display: flex;
+    justify-content: right;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    flex-wrap: wrap;
+    background-color: #d2d2d2;
+  }
+
+  /* Estilo para el texto en el enlace del submenú */
+  #submenu .d-none.d-sm-inline {
+    color: black;
+    /* Cambia el color del texto a rojo */
+    font-weight: bold;
+    font-size: smaller;
+  }
+
+  .head-information {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

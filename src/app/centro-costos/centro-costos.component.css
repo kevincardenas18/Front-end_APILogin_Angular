@@ -1,3 +1,40 @@
 .input-small {
     width: 500px; /* Ajusta el valor según tus necesidades */
 }
+
+  @media (max-width: 667px) {
+    th {
+        font-size: smaller;
+    }
+    tr {
+        font-size: smaller;
+    }
+    td {
+        font-size: smaller;
+    }
+    button{
+        font-size: smaller;
+    }
+    input{
+        font-size: smaller;
+    }
+    pagination-controls{
+        font-size: smaller;
+    }
+   
+  }
+  
+  
+  
+  @media (min-width: 668px) and (max-width: 991px) {
+    
+    button{
+        font-size: smaller;
+    }
+    input{
+        font-size: smaller;
+    }
+    pagination-controls{
+        font-size: smaller;
+    }
+  }
