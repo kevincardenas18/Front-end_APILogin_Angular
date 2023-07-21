@@ -9,8 +9,11 @@
 </div> -->
 
 <br>
-  <input type="text" class="form-control" placeholder="Buscar por cédula" [(ngModel)]="identificacionBusqueda">
+  <input type="text" class="form-control" style="width: 350px;" placeholder="Buscar por nombres" [(ngModel)]="nombresBusqueda">
   <br>
+
+  <button class="btn btn-primary mb-3" (click)="nuevoTrabajador()">Crear nuevo Trabajador</button>
+  <button class="btn btn-success mb-3" (click)="descargarTablaExcel()">Descargar Excel</button>
 
   <ng-template #modalTemplate>
     <div class="modal-header">
@@ -20,7 +23,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #myForm="ngForm" (submit)="onSubmit(myForm)" class="responsive-form">
+      <form id="CreateForm" #myForm="ngForm" (submit)="onSubmit(myForm)" class="responsive-form">
         <div class="form-group">
           <label for="codigoEmisor">Código Compañía</label>
           <input id="codigoEmisor" class="form-control" [(ngModel)]="codigoEmisorSeleccionado" name="codigoEmisor" readonly>
@@ -33,40 +36,40 @@
         </div>
         <div class="form-group">
           <label for="apellidoPaterno">Apellido Paterno</label>
-          <input id="apellidoPaterno" class="form-control" [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required (keydown)="onlyLettersAndNumbers($event)">
+          <input id="apellidoPaterno" class="form-control" [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
         </div>
         <div class="form-group">
           <label for="apellidoMaterno">Apellido Materno</label>
-          <input id="apellidoMaterno" class="form-control" [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required (keydown)="onlyLettersAndNumbers($event)">
+          <input id="apellidoMaterno" class="form-control" [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
         </div>
         <div class="form-group">
           <label for="nombres">Nombres</label>
-          <input id="nombres" class="form-control" [(ngModel)]="nombres" name="nombres" required (keydown)="onlyLettersAndNumbers($event)">
+          <input id="nombres" class="form-control" [(ngModel)]="nombres" name="nombres" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
         </div>
         <div class="form-group">
           <label for="identificacion">Identificacion</label>
-          <input id="identificacion" class="form-control" [(ngModel)]="identificacion" name="identificacion" required (keyup)="validarIdentificacion()" (keydown)="onlyNumbers($event)">
+          <input id="identificacion" class="form-control" [(ngModel)]="identificacion" name="identificacion" required (keyup)="validarIdentificacion('crear')" (keydown)="onlyNumbers($event)" maxlength="10">
           <div class="validation-message" *ngIf="identificacionInvalid">Identificación inválida</div>
         </div>
         <div class="form-group">
           <label for="entidadBancaria">Entidad Bancaria</label>
-          <input id="entidadBancaria" class="form-control" [(ngModel)]="entidadBancaria" name="entidadBancaria" required (keydown)="onlyLettersAndNumbers($event)">
+          <input id="entidadBancaria" class="form-control" [(ngModel)]="entidadBancaria" name="entidadBancaria" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
         </div>
         <div class="form-group">
           <label for="carnetIESS">Carnet IESS</label>
-          <input id="carnetIESS" class="form-control" [(ngModel)]="carnetIESS" name="carnetIESS" required (keydown)="onlyLettersAndNumbers($event)">
+          <input id="carnetIESS" class="form-control" [(ngModel)]="carnetIESS" name="carnetIESS" required (keydown)="onlyLettersAndNumbers($event)" maxlength="15">
         </div>
         <div class="form-group">
           <label for="direccion">Dirección</label>
-          <input id="direccion" class="form-control" [(ngModel)]="direccion" name="direccion" required>
+          <input id="direccion" class="form-control" [(ngModel)]="direccion" name="direccion" required maxlength="50">
         </div>
         <div class="form-group">
           <label for="telefonoFijo">Teléfono Fijo</label>
-          <input id="telefonoFijo" class="form-control" [(ngModel)]="telefonoFijo" name="telefonoFijo" required (keydown)="onlyNumbers($event)">
+          <input id="telefonoFijo" class="form-control" [(ngModel)]="telefonoFijo" name="telefonoFijo" required (keydown)="onlyNumbers($event)" maxlength="10">
         </div>
         <div class="form-group">
           <label for="telefonoMovil">Teléfono Móvil</label>
-          <input id="telefonoMovil" class="form-control" [(ngModel)]="telefonoMovil" name="telefonoMovil" required (keydown)="onlyNumbers($event)">
+          <input id="telefonoMovil" class="form-control" [(ngModel)]="telefonoMovil" name="telefonoMovil" required (keydown)="onlyNumbers($event)" maxlength="10">
         </div>
         <div class="form-group">
           <label for="genero">Genero</label>
@@ -76,15 +79,17 @@
         </div>
         <div class="form-group">
           <label for="nroCtaBancaria">Nro. Cuenta Bancaria</label>
-          <input id="nroCtaBancaria" class="form-control" [(ngModel)]="nroCtaBancaria" name="nroCtaBancaria" required (keydown)="onlyNumbers($event)">
+          <input id="nroCtaBancaria" class="form-control" [(ngModel)]="nroCtaBancaria" name="nroCtaBancaria" required (keydown)="onlyNumbers($event)" maxlength="10">
         </div>
         <div class="form-group">
-          <label for="codigoCatOcupacion">Cód. Categoria Ocupación</label>
-          <input id="codigoCatOcupacion" class="form-control" [(ngModel)]="codCatOcupacion" name="codigoCatOcupacion" required (keydown)="onlyLettersAndNumbers($event)">
+          <label for="codigoCatOcupacion">Codigo Categoria ocupación</label>
+          <select id="codigoCatOcupacion" class="form-control" [(ngModel)]="codigoCatOcupacionSeleccionado" name="codigoCatOcupacion" required>
+            <option *ngFor="let option of categoriaOcupacionalOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="ocupacion">Ocupación</label>
-          <input id="ocupacion" class="form-control" [(ngModel)]="ocupacion" name="ocupacion" required (keydown)="onlyLettersAndNumbers($event)">
+          <input id="ocupacion" class="form-control" [(ngModel)]="ocupacion" name="ocupacion" required (keydown)="onlyLettersAndNumbers($event)" maxlength="2">
         </div>
         <div class="form-group">
           <label for="centroCostos">Centro Costos</label>
@@ -94,7 +99,9 @@
         </div>
         <div class="form-group">
           <label for="nivelSalarial">Nivel Salarial</label>
-          <input id="nivelSalarial" class="form-control" [(ngModel)]="nivelSalarial" name="nivelSalarial" required (keydown)="onlyLettersAndNumbers($event)">
+          <select id="nivelSalarial" class="form-control" [(ngModel)]="nivelSalarialSeleccionado" name="nivelSalarial" required>
+            <option *ngFor="let option of nivelSalarialOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="estadoTrabajador">Estado Trabajador</label>
@@ -111,6 +118,7 @@
         <div class="form-group">
           <label for="tipoCese">Tipo Cese</label>
           <select id="tipoCese" class="form-control" [(ngModel)]="tipoCeseSeleccionado" name="tipoCese" required>
+            <option value="vacio"></option>
             <option *ngFor="let option of tipoCeseOptions" [value]="option.value">{{ option.label }}</option>
           </select>
         </div>
@@ -121,8 +129,10 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="tipoComision">Tipo Comision</label>
-          <input id="tipoComision" class="form-control" [(ngModel)]="tipoComision" name="tipoComision" required>
+          <label for="tipoComision">Tipo Comisión</label>
+          <select id="tipoComision" class="form-control" [(ngModel)]="tipoComisionSeleccionado" name="tipoComision" required>
+            <option *ngFor="let option of tipoComisionOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="fechaNacimiento">Fecha Nacimiento</label>
@@ -134,15 +144,21 @@
         </div>
         <div class="form-group">
           <label for="fechaCese">Fecha Cese</label>
-          <input type="date" id="fechaCese" class="form-control" [(ngModel)]="fechaCese" name="fechaCese" required>
+          <input type="date" id="fechaCese" class="form-control" [(ngModel)]="fechaCese" name="fechaCese">
         </div>
+        <!-- <div class="form-group">
+          <label for="periodoVacaciones">Periodo Vacaciones</label>
+          <select id="periodoVacaciones" class="form-control" [(ngModel)]="periodoVacacionesSeleccionado" name="periodoVacaciones" required>
+            <option *ngFor="let option of periodoVacacionesOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
+        </div> -->
         <div class="form-group">
           <label for="periodoVacaciones">Periodo Vacaciones</label>
-          <input type="number" id="periodoVacaciones" class="form-control" [(ngModel)]="periodoVacaciones" name="periodoVacaciones" required (keydown)="onlyNumbers($event)">
+          <input type="number" id="periodoVacaciones" class="form-control" [(ngModel)]="periodoVacacionesSeleccionado" name="periodoVacaciones" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 1)">
         </div>
         <div class="form-group">
           <label for="fechaReingreso">Fecha Reingreso</label>
-          <input type="date" id="fechaReingreso" class="form-control" [(ngModel)]="fechaReingreso" name="fechaReingreso" required>
+          <input type="date" id="fechaReingreso" class="form-control" [(ngModel)]="fechaReingreso" name="fechaReingreso">
         </div>
         <div class="form-group">
           <label for="fechaUltActualizacion">Fecha Última Actualizacion</label>
@@ -162,42 +178,250 @@
         </div>
         <div class="form-group">
           <label for="formaCalculo13ro">Forma Calculo 13ro</label>
-          <input type="number" id="formaCalculo13ro" class="form-control" [(ngModel)]="formaCalculo13ro" name="formaCalculo13ro" required (keydown)="onlyNumbers($event)">
+          <select id="formaCalculo13ro" class="form-control" [(ngModel)]="decimo13roSeleccionado" name="formaCalculo13ro" required>
+            <option *ngFor="let option of decimoTerceroDecimoCuartoOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="formaCalculo14ro">Forma Calculo 14ro</label>
-          <input type="number" id="formaCalculo14ro" class="form-control" [(ngModel)]="formaCalculo14ro" name="formaCalculo14ro" required (keydown)="onlyNumbers($event)">
+          <select id="formaCalculo14ro" class="form-control" [(ngModel)]="decimo14roSeleccionado" name="formaCalculo14ro" required>
+            <option *ngFor="let option of decimoTerceroDecimoCuartoOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="boniComplementaria">Boni. Complementaria</label>
-          <input type="number" id="boniComplementaria" class="form-control" [(ngModel)]="boniComplementaria" name="boniComplementaria" required (keydown)="onlyNumbers($event)">
+          <input type="number" id="boniComplementaria" class="form-control" [(ngModel)]="boniComplementaria" name="boniComplementaria" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 5)">
         </div>
         <div class="form-group">
           <label for="boniEspecial">Boni. Especial</label>
-          <input type="number" id="boniEspecial" class="form-control" [(ngModel)]="boniEspecial" name="boniEspecial" required (keydown)="onlyNumbers($event)">
+          <input type="number" id="boniEspecial" class="form-control" [(ngModel)]="boniEspecial" name="boniEspecial" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 5)">
         </div>
         <div class="form-group">
           <label for="remuneracionMinima">Remuneración Mínima</label>
-          <input type="number" id="remuneracionMinima" class="form-control" [(ngModel)]="remuneracionMinima" name="remuneracionMinima" required (keydown)="onlyNumbers($event)">
+          <input type="number" id="remuneracionMinima" class="form-control" [(ngModel)]="remuneracionMinima" name="remuneracionMinima" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 5)">
         </div>
         <div class="form-group">
           <label for="fondoReserva">Fondo Reserva</label>
-          <input id="fondoReserva" class="form-control" [(ngModel)]="fondoReserva" name="fondoReserva" required (keydown)="onlyLettersAndNumbers($event)">
-        </div>
-        <button type="submit" [disabled]="!myForm.valid || identificacionInvalid" class="btn btn-primary">Crear nuevo</button>
+          <select id="fondoReserva" class="form-control" [(ngModel)]="fondoReservaSeleccionado" name="fondoReserva" required>
+            <option *ngFor="let option of fondoReservaOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
+        </div>      
       </form>
     </div>
     <div class="modal-footer">
+      <button type="submit" form="CreateForm" [disabled]="!myForm.valid || identificacionInvalid" class="btn btn-primary">Crear nuevo</button>
       <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Cerrar</button>
-      <!-- <button type="button" class="btn btn-primary" (click)="crearTrabajador()">Crear</button> -->
     </div>
   </ng-template>
-  
 
-  <button *ngIf="autorizadorService.sesionIniciada" class="btn btn-primary mb-3" (click)="nuevoTrabajador()">Crear nuevo Trabajador</button>
+
+  <ng-template #modalEditTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title">Editar Trabajador</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="EditForm" #myForm="ngForm" (submit)="onSubmit2(myForm)" class="responsive-form">
+        <div class="form-group">
+          <label for="codigoEmisor">Código Compañía</label>
+          <input id="codigoEmisor" class="form-control" [(ngModel)]="codigoEmisorSeleccionado" name="codigoEmisor" readonly>
+        </div>
+        <div class="form-group">
+          <label for="codigoTrabajador">Código Trabajador</label>
+          <input id="codigoTrabajador" class="form-control" [(ngModel)]="trabajadorSeleccionado.Id_Trabajador" name="codigoTrabajador" readonly>
+        </div>
+        <div class="form-group">
+          <label for="tipoTrabajador">Tipo Trabajador</label>
+          <select id="tipoTrabajador" class="form-control" [(ngModel)]="trabajadorSeleccionado.Tipo_trabajador" name="tipoTrabajador" required>
+            <option *ngFor="let option of tipoTrabajadorOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Tipo_trabajador">{{ option.label }}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="apellidoPaterno">Apellido Paterno</label>
+          <input id="apellidoPaterno" class="form-control" [(ngModel)]="trabajadorSeleccionado.Apellido_Paterno" name="apellidoPaterno" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
+        </div>
+        <div class="form-group">
+          <label for="apellidoMaterno">Apellido Materno</label>
+          <input id="apellidoMaterno" class="form-control" [(ngModel)]="trabajadorSeleccionado.Apellido_Materno" name="apellidoMaterno" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
+        </div>
+        <div class="form-group">
+          <label for="nombres">Nombres</label>
+          <input id="nombres" class="form-control" [(ngModel)]="trabajadorSeleccionado.Nombres" name="nombres" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
+        </div>
+        <div class="form-group">
+          <label for="identificacion">Identificacion</label>
+          <input id="identificacion" class="form-control" [(ngModel)]="trabajadorSeleccionado.Identificacion" name="identificacion" required (keyup)="validarIdentificacion('editar')" (keydown)="onlyNumbers($event)" maxlength="10" >
+          <div class="validation-message" *ngIf="identificacionInvalid">Identificación inválida</div>
+        </div>
+        <div class="form-group">
+          <label for="entidadBancaria">Entidad Bancaria</label>
+          <input id="entidadBancaria" class="form-control" [(ngModel)]="trabajadorSeleccionado.Entidad_Bancaria" name="entidadBancaria" required (keydown)="onlyLettersAndNumbers($event)" maxlength="25">
+        </div>
+        <div class="form-group">
+          <label for="carnetIESS">Carnet IESS</label>
+          <input id="carnetIESS" class="form-control" [(ngModel)]="trabajadorSeleccionado.CarnetIESS" name="carnetIESS" required (keydown)="onlyLettersAndNumbers($event)" maxlength="15">
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input id="direccion" class="form-control" [(ngModel)]="trabajadorSeleccionado.Direccion" name="direccion" required maxlength="50">
+        </div>
+        <div class="form-group">
+          <label for="telefonoFijo">Teléfono Fijo</label>
+          <input id="telefonoFijo" class="form-control" [(ngModel)]="trabajadorSeleccionado.Telefono_Fijo" name="telefonoFijo" required (keydown)="onlyNumbers($event)" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label for="telefonoMovil">Teléfono Móvil</label>
+          <input id="telefonoMovil" class="form-control" [(ngModel)]="trabajadorSeleccionado.Telefono_Movil" name="telefonoMovil" required (keydown)="onlyNumbers($event)" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label for="genero">Genero</label>
+          <select id="genero" class="form-control" [(ngModel)]="trabajadorSeleccionado.Genero" name="generoOptions" required>
+            <option *ngFor="let option of generoOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Genero">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nroCtaBancaria">Nro. Cuenta Bancaria</label>
+          <input id="nroCtaBancaria" class="form-control" [(ngModel)]="trabajadorSeleccionado.Nro_Cuenta_Bancaria" name="nroCtaBancaria" required (keydown)="onlyNumbers($event)" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label for="codigoCatOcupacion">Codigo Categoria ocupación</label>
+          <select id="codigoCatOcupacion" class="form-control" [(ngModel)]="trabajadorSeleccionado.Codigo_Categoria_Ocupacion" name="codigoCatOcupacion" required>
+            <option *ngFor="let option of categoriaOcupacionalOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Codigo_Categoria_Ocupacion">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ocupacion">Ocupación</label>
+          <input id="ocupacion" class="form-control" [(ngModel)]="trabajadorSeleccionado.Ocupacion" name="ocupacion" required (keydown)="onlyLettersAndNumbers($event)" maxlength="2">
+        </div>
+        <div class="form-group">
+          <label for="centroCostos">Centro Costos</label>
+          <select id="centroCostos" class="form-control" [(ngModel)]="trabajadorSeleccionado.Centro_Costos" name="centroCostos" required>
+            <option *ngFor="let option of centroCostosOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Centro_Costos">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nivelSalarial">Nivel Salarial</label>
+          <select id="nivelSalarial" class="form-control" [(ngModel)]="trabajadorSeleccionado.Nivel_Salarial" name="nivelSalarial" required>
+            <option *ngFor="let option of nivelSalarialOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Nivel_Salarial">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="estadoTrabajador">Estado Trabajador</label>
+          <select id="estadoTrabajador" class="form-control" [(ngModel)]="trabajadorSeleccionado.EstadoTrabajador" name="estadoTrabajador" required>
+            <option *ngFor="let option of estadoTrabajadorOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.EstadoTrabajador">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tipoContrato">Tipo Contrato</label>
+          <select id="tipoContrato" class="form-control" [(ngModel)]="trabajadorSeleccionado.Tipo_Contrato" name="tipoContrato" required>
+            <option *ngFor="let option of tipoContratoOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Tipo_Contrato">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tipoCese">Tipo Cese</label>
+          <select id="tipoCese" class="form-control" [(ngModel)]="trabajadorSeleccionado.Tipo_Cese" name="tipoCese" required>
+            <option value="vacio"></option>
+            <option *ngFor="let option of tipoCeseOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Tipo_Cese">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="estadoCivil">Estado Civil</label>
+          <select id="estadoCivil" class="form-control" [(ngModel)]="trabajadorSeleccionado.EstadoCivil" name="estadoCivil" required>
+            <option *ngFor="let option of estadoCivilOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.EstadoCivil">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tipoComision">Tipo Comisión</label>
+          <select id="tipoComision" class="form-control" [(ngModel)]="trabajadorSeleccionado.TipodeComision" name="tipoComision" required>
+            <option *ngFor="let option of tipoComisionOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.TipodeComision">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha Nacimiento</label>
+          <input type="date" id="fechaNacimiento" class="form-control" [ngModel]="trabajadorSeleccionado.FechaNacimiento | date:'yyyy-MM-dd'" name="fechaNacimiento" required>
+        </div>        
+        <div class="form-group">
+          <label for="fechaIngreso">Fecha Ingreso</label>
+          <input type="date" id="fechaIngreso" class="form-control" [ngModel]="trabajadorSeleccionado.FechaIngreso | date:'yyyy-MM-dd'" name="fechaIngreso" required>
+        </div>
+        <div class="form-group">
+          <label for="fechaCese">Fecha Cese</label>
+          <input type="date" id="fechaCese" class="form-control" [ngModel]="trabajadorSeleccionado.FechaCese | date:'yyyy-MM-dd'" name="fechaCese">
+        </div>
+        <!-- <div class="form-group">
+          <label for="periodoVacaciones">Periodo Vacaciones</label>
+          <select id="periodoVacaciones" class="form-control" [(ngModel)]="periodoVacacionesSeleccionado" name="periodoVacaciones" required>
+            <option *ngFor="let option of periodoVacacionesOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
+        </div> -->
+        <div class="form-group">
+          <label for="periodoVacaciones">Periodo Vacaciones</label>
+          <input type="number" id="periodoVacaciones" class="form-control" [(ngModel)]="trabajadorSeleccionado.PeriododeVacaciones" name="periodoVacaciones" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 1)">
+        </div>
+        <div class="form-group">
+          <label for="fechaReingreso">Fecha Reingreso</label>
+          <input type="date" id="fechaReingreso" class="form-control" [ngModel]="trabajadorSeleccionado.FechaReingreso | date:'yyyy-MM-dd'" name="fechaReingreso">
+        </div>
+        <div class="form-group">
+          <label for="fechaUltActualizacion">Fecha Última Actualizacion</label>
+          <input type="date" id="fechaUltActualizacion" class="form-control" [ngModel]="trabajadorSeleccionado.Fecha_Ult_Actualizacion | date:'yyyy-MM-dd'" name="fechaUltActualizacion" required>
+        </div>
+        <div class="form-group">
+          <label for="esReingreso">¿Es Reingreso?</label>
+          <select id="esReingreso" class="form-control" [(ngModel)]="trabajadorSeleccionado.EsReingreso" name="esReingreso" required>
+            <option *ngFor="let option of esReingresoOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.EsReingreso">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tipoCuenta">Tipo Cuenta</label>
+          <select id="tipoCuenta" class="form-control" [(ngModel)]="trabajadorSeleccionado.Tipo_Cuenta" name="tipoCuenta" required>
+            <option *ngFor="let option of tipoCuentaOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Tipo_Cuenta">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="formaCalculo13ro">Forma Calculo 13ro</label>
+          <select id="formaCalculo13ro" class="form-control" [(ngModel)]="trabajadorSeleccionado.FormaCalculo13ro" name="formaCalculo13ro" required>
+            <option *ngFor="let option of decimoTerceroDecimoCuartoOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.FormaCalculo13ro">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="formaCalculo14ro">Forma Calculo 14ro</label>
+          <select id="formaCalculo14ro" class="form-control" [(ngModel)]="trabajadorSeleccionado.FormaCalculo14ro" name="formaCalculo14ro" required>
+            <option *ngFor="let option of decimoTerceroDecimoCuartoOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.FormaCalculo14ro">{{ option.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="boniComplementaria">Boni. Complementaria</label>
+          <input type="number" id="boniComplementaria" class="form-control" [(ngModel)]="trabajadorSeleccionado.BoniComplementaria" name="boniComplementaria" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 5)">
+        </div>
+        <div class="form-group">
+          <label for="boniEspecial">Boni. Especial</label>
+          <input type="number" id="boniEspecial" class="form-control" [(ngModel)]="trabajadorSeleccionado.BoniEspecial" name="boniEspecial" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 5)">
+        </div>
+        <div class="form-group">
+          <label for="remuneracionMinima">Remuneración Mínima</label>
+          <input type="number" id="remuneracionMinima" class="form-control" [(ngModel)]="trabajadorSeleccionado.Remuneracion_Minima" name="remuneracionMinima" required (keydown)="onlyNumbers($event)" (input)="limitarLongitud($event, 5)">
+        </div>
+        <div class="form-group">
+          <label for="fondoReserva">Fondo Reserva</label>
+          <select id="fondoReserva" class="form-control" [(ngModel)]="trabajadorSeleccionado.Fondo_Reserva" name="fondoReserva" required>
+            <option *ngFor="let option of fondoReservaOptions" [value]="option.value" [selected]="option.value === trabajadorSeleccionado.Fondo_Reserva.trim()">{{ option.label }}</option>
+          </select>
+        </div>      
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" form="EditForm" [disabled]="!myForm.valid || identificacionInvalid" class="btn btn-primary">Actualizar</button>
+      <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Cerrar</button>
+    </div>
+  </ng-template>
+
   <div class="formulario-nuevo-centro-costos">
       <div class="table-container">
-        <table class="table table-hover">
+        <table #table class="table table-hover">
             <thead>
                 <tr>
                     <th>Codigo Compañia</th>
@@ -242,12 +466,12 @@
                     <th>Remuneracion_Minima</th>
                     <th>CuotaCuentaCorriente</th>
                     <th>Fondo_Reserva</th>
-                    <th *ngIf="autorizadorService.sesionIniciada">Acción</th>
                     <!-- <th>Mensaje</th> -->
                 </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let cc of (datosTablaOriginal.length > 0 ? datosTablaOriginal : trabajadores) | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } | filter: identificacionBusqueda">
+            <!-- <tr *ngFor="let cc of (datosTablaOriginal.length > 0 ? datosTablaOriginal : trabajadores) | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } | filter: identificacionBusqueda"> -->
+              <tr *ngFor="let cc of (trabajadores | filter: nombresBusqueda) | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
                 <td>{{ cc.COMP_Codigo }}</td>
                 <td>{{ cc.Id_Trabajador }}</td>
                 <td>{{ cc.Tipo_trabajador }}</td>
@@ -291,7 +515,7 @@
                 <td>{{ cc.CuotaCuentaCorriente }}</td>
                 <td>{{ cc.Fondo_Reserva }}</td>
                 <!-- <td>{{ cc.Mensaje }}</td> -->
-                <td *ngIf="autorizadorService.sesionIniciada">
+                <td>
                   <button class="btn btn-sm btn-primary me-2" (click)="editarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Editar</button>
                   <button class="btn btn-sm btn-danger" (click)="eliminarTrabajador(cc.COMP_Codigo, cc.Id_Trabajador)">Eliminar</button>
                 </td>
